@@ -1,0 +1,44 @@
+mkdir mern-chat_app
+cd mern-chat_app
+
+npm install -g typescript
+
+//##Backend##//
+mkdir backend
+cd backend
+
+npm init -y
+npm install express mongoose cors dotenv socket.io
+npm install typescript ts-node-dev @types/node @types/express @types/mongoose @types/cors @types/dotenv @types/socket.io --save-dev
+npx tsc --init
+
+In tsconfig.json:
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
+
+
+npx tsc
+
+In package.json:
+"scripts": {
+  "build": "tsc",
+  "start": "node dist/server.js"
+}
+
+//##mern-crud-app##//
+npx create-react-app frontend --template typescript
+cd frontend
+
+//##frontend##//
+npm install socket.io-client
