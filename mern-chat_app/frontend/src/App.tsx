@@ -21,6 +21,9 @@ const App: React.FC = () => {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
     });
 
+    // Cleaning up with socket.off('receiveMessage') is critical, especially if the component is unmounted or 
+    // re-rendered. Without cleanup, multiple listeners could accumulate, leading to unexpected behavior or 
+    // performance issues.
     return () => {
       socket.off('receiveMessage');
     };
